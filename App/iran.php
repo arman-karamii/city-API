@@ -37,16 +37,16 @@ function getCities($data = null)
     $fields = $data['fields'] ?? '*';
     $orderby = $data['orderby'] ?? null;
     $page = $data['page'] ?? null;
-    $pagesize = $data['pagesize'] ?? null;
+    $page_size = $data['page_size'] ?? null;
     $orderByStr = '';
     if (!is_null($orderby)) {
         $orderByStr = " order by $orderby ";
     }
 
     $limit = '';
-    if (is_numeric($page) and is_numeric($pagesize)) {
-        $start = ($page - 1) * $pagesize;
-        $limit = " LIMIT $start,$pagesize"; // pagination
+    if (is_numeric($page) and is_numeric($page_size)) {
+        $start = ($page - 1) * $page_size;
+        $limit = " LIMIT $start,$page_size"; // pagination
     }
     $where = '';
     if (!is_null($province_id) and is_numeric($province_id)) {
@@ -132,10 +132,10 @@ function deleteProvince($province_id)
 #================  Auth Operations  =================
 # its our user database 😀
 $users = [
-    (object) ['id' => 1, 'name' => 'Loghman', 'email' => 'loghman@7learn.com', 'role' => 'admin', 'allowed_provinces' => []],
-    (object) ['id' => 2, 'name' => 'Sara', 'email' => 'sara@7learn.com', 'role' => 'Governor', 'allowed_provinces' => [7, 8, 9]],
-    (object) ['id' => 3, 'name' => 'Ali', 'email' => 'ali@7learn.com', 'role' => 'mayor', 'allowed_provinces' => [3]],
-    (object) ['id' => 4, 'name' => 'Hassan', 'email' => 'hassan@7learn.com', 'role' => 'president', 'allowed_provinces' => []],
+    (object) ['id' => 1, 'name' => 'Arman', 'email' => 'armankarami.job@gmail.com', 'role' => 'admin', 'allowed_provinces' => []],
+    (object) ['id' => 2, 'name' => 'Sara', 'email' => 'sara@gmail.com', 'role' => 'Governor', 'allowed_provinces' => [7, 8, 9]],
+    (object) ['id' => 3, 'name' => 'Ali', 'email' => 'ali@gmail.com', 'role' => 'mayor', 'allowed_provinces' => [3]],
+    (object) ['id' => 4, 'name' => 'Hassan', 'email' => 'hassan@gmail.com', 'role' => 'president', 'allowed_provinces' => []],
 ];
 function getUserById($id)
 {

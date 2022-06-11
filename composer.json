@@ -1,0 +1,17 @@
+{
+  "name": "ak47/iran_exp",
+  "autoload": {
+    "psr-4": {
+      "Ak47\\IranExp\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "armankarami.job",
+      "email": "armankarami.job@gmail.com"
+    }
+  ],
+  "require": {
+    "firebase/php-jwt": "6.2.0"
+  }
+}
