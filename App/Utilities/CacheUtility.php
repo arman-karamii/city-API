@@ -7,7 +7,7 @@ class CacheUtility
 {
     protected static $cache_file;
     protected static $cache_enabled = CACHE_ENABLED;
-    const EXPIRE_TIME = 5; // 1 hour
+    const EXPIRE_TIME = 3600; // 1 hour
 
     public static function init()
     {
@@ -55,7 +55,7 @@ class CacheUtility
 
     public static function flush()
     {
-        $files = glob(CACHE_DIR . "*"); // get all file names
+        $files = glob(CACHE_DIR . "*");
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
@@ -63,5 +63,4 @@ class CacheUtility
         }
 
     }
-
 }

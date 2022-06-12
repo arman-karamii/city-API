@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-class CityServices
+class CityService
 {
 
     public function getCities($data)
@@ -9,19 +9,20 @@ class CityServices
         $result = getCities($data);
         return $result;
     }
-    public function addCity($data)
+    public function createCity($data)
     {
         $result = addCity($data);
         return $result;
     }
-    public function changeCityName($data)
+    public function updateCityName($city_id, $name)
     {
-        $result = changeCityName($data['city_id'], $data['name']);
+        $result = changeCityName($city_id, $name);
         return $result;
     }
-    public function deleteCity($data)
+    public function deleteCity($city_id)
     {
-        $result = deleteCity($data['city_id']);
+        $result = deleteCity($city_id);
         return $result;
     }
+
 }

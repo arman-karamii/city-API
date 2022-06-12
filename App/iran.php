@@ -1,4 +1,5 @@
 <?php
+use Firebase\JWT\Key;
 use \Firebase\JWT\JWT;
 
 try {
@@ -37,16 +38,16 @@ function getCities($data = null)
     $fields = $data['fields'] ?? '*';
     $orderby = $data['orderby'] ?? null;
     $page = $data['page'] ?? null;
-    $page_size = $data['page_size'] ?? null;
+    $pagesize = $data['pagesize'] ?? null;
     $orderByStr = '';
     if (!is_null($orderby)) {
         $orderByStr = " order by $orderby ";
     }
 
     $limit = '';
-    if (is_numeric($page) and is_numeric($page_size)) {
-        $start = ($page - 1) * $page_size;
-        $limit = " LIMIT $start,$page_size"; // pagination
+    if (is_numeric($page) and is_numeric($pagesize)) {
+        $start = ($page - 1) * $pagesize;
+        $limit = " LIMIT $start,$pagesize"; // pagination
     }
     $where = '';
     if (!is_null($province_id) and is_numeric($province_id)) {
@@ -169,12 +170,16 @@ function createApiToken($user)
 function isValidToken($jwt_token)
 {
     try {
-        $payload = JWT::decode($jwt_token, JWT_KEY, array(JWT_ALG));
+        $payload = JWT::decode($jwt_token, new Key(JWT_KEY, JWT_ALG));
         $user = getUserById($payload->user_id);
         return $user;
     } catch (Exception $e) {
         return false;
     }
+    // $payload = JWT::decode($jwt_token, new Key(JWT_KEY, 'HS256'));
+    // var_dump($payload);
+    // $user = getUserById($payload->user_id);
+    // return $user;
 }
 
 function hasAccessToProvince($user, $province_id)
